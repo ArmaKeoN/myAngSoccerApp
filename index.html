@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html ng-app="myTestApp" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="Content/jquery.datetimepicker.css" rel="stylesheet" />
+    <link href="Content/fullcalendar.css" rel="stylesheet" />
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/StyleSheet.css" rel="stylesheet" />
+</head>
+<body>
+        <div id="container">
+            <ul class="nav nav-tabs nav-justified">
+                <li><a href="#">Home&nbsp;<span class="glyphicon glyphicon-home"></span></a></li>
+                <li><a href="#/team">Teams&nbsp;<span class="glyphicon glyphicon-flag"></span></a></li>
+                <li><a href="#/game">Games&nbsp;<span class="glyphicon glyphicon-bullhorn"></span></a></li>
+                <li><a href="#/schedule">Schedule&nbsp;<span class="glyphicon glyphicon-time"></span></a></li>
+            </ul>
+            <div ng-view=""></div>
+        </div>
+    <script src="Scripts/jquery-1.9.0.min.js"></script>
+    <script src="Scripts/moment.min.js"></script>
+    <script src="Scripts/fullcalendar.min.js"></script>
+    <script src="Scripts/jquery.datetimepicker.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/angular-route.min.js"></script>
+    <script src="Scripts/SoccerApp.js"></script>
+    <script src="Scripts/SoccerFactory.js"></script>
+    <script src="Scripts/TeamCtrl.js"></script>
+    <script src="Scripts/GameCtrl.js"></script>
+    <script src="Scripts/ScheduleCtrl.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+﻿<div class="modal fade" id="addTeamModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Add Team</h4>
+            </div>
+            <form name="addTeamForm">
+                <div class="modal-body">
+                    <input class="form-control" type="text" ng-model="teamName" name="tName" placeholder="Enter team name" required />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" ng-click="addTeam()" data-dismiss="modal" ng-disabled="addTeamForm.tName.$error.required">Save</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="editTeamModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Edit Team</h4>
+            </div>
+            <form name="editTeamForm">
+                <div class="modal-body">
+                    <input ng-model="teamEditId" class="hidden" type="text" />
+                    <input ng-model="teamEditName" name="tEditName" class="form-control" type="text" required />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" ng-click="editTeam()" data-dismiss="modal" ng-disabled="editTeamForm.tEditName.$error.required">Edit</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<br />
+
+<div>
+    <div class="well" ng-repeat="team in teams">
+        <!-- Default panel contents -->
+        <h4>{{team.Name}}</h4>
+        <a href="" ng-click="removeTeam(team.Id)">Delete</a> <span>|</span>
+        <a href="" data-toggle="modal" data-target="#editTeamModal" ng-click="getTeam(team.Id)">Edit</a>
+    </div>
+    <button class="btn btn-default" data-toggle="modal" data-target="#addTeamModal">
+        Add Team
+    </button>
+</div>

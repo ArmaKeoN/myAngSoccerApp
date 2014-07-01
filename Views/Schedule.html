@@ -1,0 +1,27 @@
+﻿<div class="modal fade" id="teamScheduleModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Scheduled Games</h4>
+            </div>
+            <div class="modal-body" ng-repeat="schedule in schedules">
+                <h4 class="modal-title">{{schedule.title}}</h4>
+                <p>{{schedule.start}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="row">
+    <div class="col-sm-4" id="schedule">
+        <ul class="nav nav-pills nav-stacked">
+            <li ng-repeat="team in teams"><a href="" ng-click="getTeamSchedule(team.Name)" data-toggle="modal" data-target="#teamScheduleModal">{{team.Name}}</a></li>
+        </ul>
+    </div>
+    <div class="col-sm-8">
+            <div id="calendar"></div>
+    </div>
+</div>

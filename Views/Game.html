@@ -1,0 +1,77 @@
+﻿<div class="modal fade" id="addGameModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Add Game</h4>
+            </div>
+            <form name="addGameForm">
+                <div class="modal-body">
+                    <section style="text-align:center;">
+                        <b>Team</b><select ng-model="team1" name="tGameAdd1" class="form-control" required>
+                            <option></option>
+                            <option value="{{team.Name}}" ng-repeat="team in teams">{{team.Name}}</option>
+                        </select><br />
+                        <b>VS</b><br /><br />
+                        <b>Team</b><select ng-model="team2" name="tGameAdd2" class="form-control" required>
+                            <option></option>
+                            <option value="{{team.Name}}" ng-repeat="team in teams">{{team.Name}}</option>
+                        </select>
+                    </section><hr />
+                    <input class="form-control" id="datetimepicker1" placeholder="Date" ng-model="gameDate" name="gAddDate" required />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" ng-click="addGame()" data-dismiss="modal" ng-disabled="addGameForm.tGameAdd1.$error.required || addGameForm.tGameAdd2.$error.required || addGameForm.gAddDate.$error.required">Save</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="editGameModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Edit Game</h4>
+            </div>
+            <form name="editGameForm">
+                <div class="modal-body">
+                    <input id="gameEditId" class="hidden" type="text" />
+                    <section style="text-align:center;">
+                        <b>{{gameEdit.Team1}}</b><select ng-model="gameTeamOneEdit" name="gTm1Edit" class="form-control" required>
+                            <option></option>
+                            <option value="{{teamSel.Name}}" ng-repeat="teamSel in teamSelection">{{teamSel.Name}}</option>
+                        </select><br />
+                        <b>VS</b><br /><br />
+                        <b>{{gameEdit.Team2}}</b><select ng-model="gameTeamTwoEdit" name="gTm2Edit" class="form-control" required>
+                            <option></option>
+                            <option value="{{teamSel.Name}}" ng-repeat="teamSel in teamSelection">{{teamSel.Name}}</option>
+                        </select><br />
+                        <b>{{gameEdit.GameDate}}</b>
+                        <hr />
+                    </section>
+                    <input class="form-control" id="datetimepicker2" placeholder="Date" ng-model="gameDateEdit" name="gDateEdit" required />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" ng-click="editGame()" data-dismiss="modal" ng-disabled="editGameForm.gTm1Edit.$error.required || editGameForm.gTm2Edit.$error.required || editGameForm.gDateEdit.$error.required">Edit</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<br />
+
+<div>
+    <div class="well" ng-repeat="game in games">
+        <!-- Default panel contents -->
+        <h4>{{game.Team1}}<span> VS </span>{{game.Team2}}</h4>
+        <h5>{{game.GameDate}}</h5>
+        <a href="" ng-click="removeGame(game.Id)">Delete</a> <span>|</span>
+        <a href="" data-toggle="modal" data-target="#editGameModal" ng-click="getGame(game.Id)">Edit</a>
+    </div>
+    <button class="btn btn-default" data-toggle="modal" data-target="#addGameModal" ng-click="getTeams()">
+        Add Game
+    </button>
+</div>
