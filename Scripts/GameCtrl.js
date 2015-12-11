@@ -24,8 +24,6 @@
         });
     };
 
-    $scope.getGames();
-
     $scope.getGames = function () {
         $scope.games = [];
         SoccerFactory.getGames()
@@ -42,10 +40,12 @@
                 }
             }
         })
-            .error(function (error) {
+        .error(function (error) {
                 $log.error('Error: ' + error.message);
-            });
-    }
+        });
+    };
+
+    $scope.getGames();
 
     $scope.getGame = function (id) {
         initDTPEditGame();
