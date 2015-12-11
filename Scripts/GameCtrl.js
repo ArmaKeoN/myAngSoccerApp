@@ -1,5 +1,5 @@
-﻿soccerApp.controller('GameCtrl', function ($scope, $route, SoccerFactory) {
-//test
+﻿soccerApp.controller('GameCtrl', function ($scope, $route, SoccerFactory, $log, $timeout) {
+
     Date.parseDate = function (input, format) {
         return moment(input, format).toDate();
     };
@@ -24,9 +24,9 @@
         });
     };
 
-    getGames();
+    $scope.getGames();
 
-    function getGames() {
+    $scope.getGames = function () {
         $scope.games = [];
         SoccerFactory.getGames()
         .success(function (data) {
@@ -43,7 +43,7 @@
             }
         })
             .error(function (error) {
-                console.log('Error: ' + error.message);
+                $log.error('Error: ' + error.message);
             });
     }
 
@@ -63,7 +63,7 @@
                     }
                 })
                     .error(function (error) {
-                        console.log('Error: ' + error.message);
+                        $log.log('Error: ' + error.message);
                     });
         SoccerFactory.getGame(id)
         .success(function (data) {
@@ -71,7 +71,7 @@
             $scope.gameEditId = id;
         })
             .error(function (error) {
-                console.log('Error: ' + error.message);
+                $log.error('Error: ' + error.message);
             });
     };
 
@@ -91,7 +91,7 @@
             }
         })
             .error(function (error) {
-                console.log('Error: ' + error.message);
+                $log.error('Error: ' + error.message);
             });
     };
 
@@ -105,12 +105,12 @@
 
         SoccerFactory.postGame(newGame)
             .success(function (status) {
-                console.log(status);
+                $log.info(status);
             })
             .error(function (error) {
-                console.log('Error: ' + error.message);
+                $log.error('Error: ' + error.message);
             });
-        setTimeout(function () { getGames() }, 500);
+        $timeout(function () { getGames() }, 500);
     };
 
     $scope.editGame = function () {
@@ -124,22 +124,22 @@
         };
         SoccerFactory.putGame(id, editedGame)
           .success(function () {
-              console.log(status);
+              $log.info(status);
           })
           .error(function (error) {
-              console.log('Error: ' + error.message);
+              $log.error('Error: ' + error.message);
           });
-        setTimeout(function () { getGames() }, 500);
+        $timeout(function () { getGames() }, 500);
     };
 
     $scope.removeGame = function (id) {
         SoccerFactory.deleteGame(id)
         .success(function (status) {
-            console.log(status);
+            $log.info(status);
         })
         .error(function (error) {
-            console.log('Error: ' + error.message);
+            $log.error('Error: ' + error.message);
         });
-        setTimeout(function () { getGames() }, 500);
+        $timeout(function () { getGames() }, 500);
     };
 });
