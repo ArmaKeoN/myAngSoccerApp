@@ -1,5 +1,5 @@
 ﻿soccerApp.controller('GameCtrl', function ($scope, $route, SoccerFactory) {
-
+//test
     Date.parseDate = function (input, format) {
         return moment(input, format).toDate();
     };
