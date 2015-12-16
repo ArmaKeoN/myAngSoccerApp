@@ -1,8 +1,6 @@
-﻿soccerApp.controller('TeamCtrl', function ($scope, $route, SoccerFactory) {
-
-    getTeams();
-
-    function getTeams() {
+soccerApp.controller('TeamCtrl', function ($scope, $route, SoccerFactory, $timeout, $log) {
+    
+    $scope.getTeams = function() {
         $scope.teams = [];
         SoccerFactory.getTeams()
         .success(function (data) {
@@ -17,9 +15,11 @@
             }
         })
             .error(function (error) {
-                console.log('Error: ' + error.message);
+                $log.error('Error: ' + error.message);
             });
     };
+    
+    $scope.getTeams();
 
     $scope.getTeam = function (id) {
         SoccerFactory.getTeam(id)
@@ -28,7 +28,7 @@
             $scope.teamEditName = data.Name;
         })
             .error(function (error) {
-                console.log('Error: ' + error.message);
+                $log.error('Error: ' + error.message);
             });
     };
 
@@ -39,12 +39,12 @@
         };
         SoccerFactory.postTeam(newTeam)
             .success(function (status) {
-                console.log(status);
+                $log.log(status);
             })
             .error(function (error) {
-                console.log('Error: ' + error.message);
+                $log.error('Error: ' + error.message);
             });
-        setTimeout(function () { getTeams() }, 500);
+        $timeout(function () { $scope.getTeams() }, 500);
     };
 
     $scope.editTeam = function () {
@@ -55,23 +55,23 @@
         };
         SoccerFactory.putTeam(id, editedTeam)
           .success(function (status) {
-              console.log(status);
+              $log.log(status);
           })
           .error(function (error) {
-              console.log('Error: ' + error.message);
+              $log.error('Error: ' + error.message);
           });
-        setTimeout(function () { getTeams() }, 500);
+        $timeout(function () { $scope.getTeams() }, 500);
     };
 
     $scope.removeTeam = function (id) {
         SoccerFactory.deleteTeam(id)
         .success(function (status) {
-            console.log(status);
+            $log.log(status);
         })
         .error(function (error) {
-            console.log('Error: ' + error.message);
+            $log.error('Error: ' + error.message);
         });
-        setTimeout(function () { getTeams() }, 1000);
+        $timeout(function () { $scope.getTeams() }, 1000);
     };
 });
 
